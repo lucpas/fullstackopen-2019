@@ -13,26 +13,18 @@ const storePerson = person => {
   return axios
     .post(baseURL, person)
     .then(response => response.data)
-    .catch(error => {
-      console.log(error);
-      return { name: '...', number: '...' };
-    });
 };
 
 const updatePerson = person => {
   return axios
     .put(baseURL + person.id, person)
     .then(response => response.data)
-    .catch(error => {
-      console.log(error);
-      return { name: '...', number: '...' };
-    });
 };
 
 const deletePerson = person => {
-  axios
+  return axios
     .delete(baseURL + person.id)
-    .catch(error => console.log(error));
+    .then(response => response.data)
 };
 
 export default { fetchPersons, storePerson, updatePerson, deletePerson };
