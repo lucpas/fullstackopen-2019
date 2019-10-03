@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-//const baseURL = 'http://localhost:3001/persons/';
+const baseURL = 'http://localhost:3001/api/persons/';
 //const baseURL = 'https://fierce-mesa-26455.herokuapp.com/api/persons/'
-const baseURL = '/api/persons/'
+// const baseURL = '/api/persons/'
 
 const fetchPersons = callback => {
   axios
