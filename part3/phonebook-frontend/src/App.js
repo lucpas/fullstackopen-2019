@@ -41,7 +41,7 @@ const App = () => {
         setPersons([...persons, newPerson]);
         showNotification(`Added ${newPerson.name}`, 'success');
       })
-      .catch(err => showNotification(`error while storing person!`, 'error'));
+      .catch(err => showNotification(err.response.data.error, 'error'));
   };
 
   const updatePersonHandler = person => {
@@ -79,7 +79,7 @@ const App = () => {
     setNotification({ show: true, msg, type });
     setTimeout(() => {
       setNotification({ ...notification, show: false });
-    }, 5000);
+    }, 10000);
   };
 
   const filteredPersons = persons.filter(person =>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const url = process.env.MONGODB_URI;
 
@@ -13,9 +14,22 @@ mongoose
   });
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String
+  name: {
+    type: String,
+    minlength: 3,
+    unique: true,
+  },
+  number: {
+    type: String,
+    validate: {
+      validator: number => /^(\D*\d){8,}$/.test(number),
+      message: props => `${props.value} is not a valid phone number!`
+    }
+  }
 });
+
+//  Prevent duplicates name entries in the database
+personSchema.plugin(uniqueValidator);
 
 //  Overwrite JSON method to map MongoDB property _id to id and ommit _v property
 personSchema.set('toJSON', {
