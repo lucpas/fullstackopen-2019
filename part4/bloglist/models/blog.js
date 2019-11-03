@@ -14,6 +14,10 @@ const blogSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 //  Overwrite JSON method to map MongoDB property _id to id and ommit _v property
